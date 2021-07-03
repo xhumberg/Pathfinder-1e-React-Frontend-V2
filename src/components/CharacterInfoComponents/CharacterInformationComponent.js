@@ -2,7 +2,7 @@ import React from 'react';
 import { Pane } from "evergreen-ui";
 import CharacterImageComponent from './CharacterImageComponent';
 import AbilitiesComponent from './AbilitiesComponent';
-import StatDisplayComponent from './StatDisplayComponent';
+import StatDisplayComponent from '../StatDisplayComponent';
 
 export default class CharacterInformationComponent extends React.Component {
 
