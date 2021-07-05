@@ -28,7 +28,7 @@ export default class StatDisplayComponent extends React.Component {
           <Heading size={700} marginLeft={25} color="white">{this.props.name}</Heading>
       </Pane>
       <Pane>
-          <Heading size={800} marginRight={25} color="white">{this.props.value}</Heading>
+          <Heading size={800} marginRight={25} marginLeft={10} color="white">{this.props.value}</Heading>
       </Pane>
   </Pane>
   </div>

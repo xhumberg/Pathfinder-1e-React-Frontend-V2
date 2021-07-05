@@ -20,8 +20,8 @@ export default class DefensiveValuesComponent extends React.Component {
       justifyContent="space-around"
       width={800}
     >
-      <ACComponent />
-      <SavesComponent />
+      <ACComponent character={this.props.character}/>
+      <SavesComponent character={this.props.character}/>
     </Pane>
   </div>
   };

@@ -13,12 +13,12 @@ export default class CharacterInformationComponent extends React.Component {
   render() {
       return <div className="CharacterInformationComponent">
         <Pane margin={16} marginTop={0}>
-          <CharacterImageComponent />
-          <AbilitiesComponent />
-          <StatDisplayComponent name="Initiative" value="0" width={250} marginTop={16} marginBottom={16}/>
-          <StatDisplayComponent name="BAB" value="3" width={250} marginTop={16} marginBottom={16}/>
-          <StatDisplayComponent name="CMB" value="+7" width={250} marginTop={16} marginBottom={16}/>
-          <StatDisplayComponent name="CMD" value="17" width={250} marginTop={16} marginBottom={16}/>
+          <CharacterImageComponent image={this.props.character.imageUrl}/>
+          <AbilitiesComponent character={this.props.character}/>
+          <StatDisplayComponent name="Initiative" value={this.props.character.initiative} width={250} marginTop={16} marginBottom={16}/>
+          <StatDisplayComponent name="BAB" value={this.props.character.bab} width={250} marginTop={16} marginBottom={16}/>
+          <StatDisplayComponent name="CMB" value={this.props.character.cmb} width={250} marginTop={16} marginBottom={16}/>
+          <StatDisplayComponent name="CMD" value={this.props.character.cmd} width={250} marginTop={16} marginBottom={16}/>
         </Pane>
       </div>
   };

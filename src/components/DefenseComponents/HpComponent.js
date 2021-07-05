@@ -12,7 +12,7 @@ export default class HpComponent extends React.Component {
   render() {
     return <div className="HpComponent">
         <Pane alignItems="center" background="rgba(0, 0, 0, 0.4)" padding={5} border={true} borderRadius={10} paddingLeft={20} paddingRight={20}>
-            <HpBarComponent />
+            <HpBarComponent character={this.props.character}/>
             <HpButtonsComponent />
         </Pane>
     </div>

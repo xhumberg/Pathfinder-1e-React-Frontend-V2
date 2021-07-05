@@ -10,8 +10,8 @@ export default class CharacterSheetComponent extends React.Component {
 
   render() {
       return <div className="CharacterSheetComponent">
-        <HeaderComponent />
-        <BodyComponent />
+        <HeaderComponent character={this.props.character}/>
+        <BodyComponent character={this.props.character}/>
       </div>
   };
 }

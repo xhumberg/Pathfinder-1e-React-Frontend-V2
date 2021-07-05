@@ -13,9 +13,9 @@ export default class DefenseComponent extends React.Component {
   render() {
       return <div className="DefenseComponent">
         <Pane display="flex" flexDirection="column" alignItems="center">
-            <HpComponent />
-            <DefensiveValuesComponent />
-            <SpecialDefensesComponent />
+            <HpComponent character={this.props.character}/>
+            <DefensiveValuesComponent character={this.props.character}/>
+            <SpecialDefensesComponent character={this.props.character}/>
         </Pane>
       </div>
   };

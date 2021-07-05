@@ -11,9 +11,9 @@ export default class ACComponent extends React.Component {
   render() {
     return <div className="ACComponent">
       <Pane alignItems="center" justifyContent="flex-start" display="flex" flexDirection="column" margin="auto">
-        <StatDisplayComponent name="AC" value="25" height={50} width={300} marginTop={8}/>
-        <StatDisplayComponent name="Flat-Footed" value="25" height={50} width={300} marginTop={16}/>
-        <StatDisplayComponent name="Touch" value="10" height={50} width={300} marginTop={16}/>
+        <StatDisplayComponent name="AC" value={this.props.character.ac} height={50} width={300} marginTop={8}/>
+        <StatDisplayComponent name="Flat-Footed" value={this.props.character.flatFooted} height={50} width={300} marginTop={16}/>
+        <StatDisplayComponent name="Touch" value={this.props.character.touch} height={50} width={300} marginTop={16}/>
       </Pane>
     </div>
   };

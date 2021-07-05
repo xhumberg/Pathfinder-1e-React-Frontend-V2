@@ -12,19 +12,19 @@ export default class HpBarComponent extends React.Component {
       <Pane display="flex" justifyContent="space-evenly" margin="auto">
         <Pane margin="auto" width="33%">
             <Heading size={600} marginBottom={4} color="white">Nonlethal Damage</Heading>
-            <Strong color="white">10</Strong>
+            <Strong color="white">{this.props.character.nonLethal || '0'} </Strong>
         </Pane>
         <Pane margin="auto" width="34%">
             <Heading size={700} marginBottom={4} color="white">Hit Points</Heading>
-            <Heading size={600} color="white">30/35</Heading>
+            <Heading size={600} color="white">{this.props.character.currentHp}/{this.props.character.maxHp}</Heading>
         </Pane>
         <Pane margin="auto" width="33%">
             <Heading size={600} marginBottom={4} color="white">Temp HP</Heading>
-            <Strong color="white">10</Strong>
+            <Strong color="white">{this.props.character.tempHp || '0'}</Strong>
         </Pane>
     </Pane>
-    <Pane width={700} height={35} background="black" margin="auto" borderRadius={17} padding={5}>
-        <Pane width={30/35*700} height={25} background="green800" borderRadius={12}>
+    <Pane width={700} height={35} background="black" margin="auto" borderRadius={17} padding={4} border={true}>
+        <Pane width={this.props.character.currentHp/this.props.character.maxHp*690} height={25} background="green800" borderRadius={12}>
         </Pane>
     </Pane>
       </div>

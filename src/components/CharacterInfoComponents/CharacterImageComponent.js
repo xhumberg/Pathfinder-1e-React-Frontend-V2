@@ -10,7 +10,7 @@ export default class CharacterImageComponent extends React.Component {
   render() {
     return <div className="CharacterImageComponent">
       <Pane height={250} width={250} marginBottom={8} marginTop={8}>
-        <img src="https://media.discordapp.net/attachments/526680690218106891/858075767665328148/ManuToken.png" height="100%" width="undefined"/>
+        <img src={this.props.image} height="100%" width="undefined"/>
         </Pane>
       </div>
   };

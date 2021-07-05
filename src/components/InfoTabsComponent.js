@@ -8,6 +8,44 @@ export default class InfoTabsComponent extends React.Component {
     super(props);
   }
 
+  organizeColumnsForSkills(skills) {
+
+    let filteredSkills = [];
+
+    for (let currentSkill = 0; currentSkill < skills?.length; currentSkill++) {
+      let skill = skills[currentSkill]
+      console.log(skill)
+      if (skill.hasModifiers) {
+        filteredSkills.push(skill)
+      }
+    }
+
+    console.log(filteredSkills)
+
+    let numberOfSkills = filteredSkills?.length;
+    let columns = Math.ceil(numberOfSkills/6);
+    let width = 484;
+    if (columns < 4) {
+      width = 484;
+    } else if (columns == 4) {
+      width = 360;
+    } else if (columns == 5) {
+      width = 284;
+    } else if (columns == 6) {
+      width = 232;
+    }
+    let allColumns = [];
+    for (let currentColumn = 0; currentColumn < columns; currentColumn++) {
+      let columnInternals = [];
+      for (let i = currentColumn*6; i < currentColumn*6 + 6 && i < numberOfSkills; i++) {
+        columnInternals.push(<StatDisplayComponent name={filteredSkills[i]?.name} value={filteredSkills[i]?.value} width={width} height={50} marginLeft={20} marginTop={12}/>)
+      }
+      allColumns.push(<Pane display="flex" flexDirection="column">{columnInternals}</Pane>)
+    }
+
+    return allColumns;
+  }
+
   render() {
     return <div className="InfoTabsComponent">
         <Pane width={1560} height={450} display="flex" flexDirection="column" alignItems="flex-start" justifyContent="flex-start" background="rgba(0, 0, 0, 0.4)" padding={10} borderRadius={20} border={true} marginLeft={20}>
@@ -19,15 +57,8 @@ export default class InfoTabsComponent extends React.Component {
                 <Tab key="Racial Abilities" id="Racial Abilities" size={600} paddingBottom={12} color="white">Racial Abilities</Tab>
                 <Tab key="Misc." id="Misc." size={600} paddingBottom={12} color="white">Misc.</Tab>
             </Pane>
-            <Pane background="rgba(256, 256, 256, 0.4)" marginTop={0} width="100%" height={400} display="flex" justifyContent="flex-start" alignItems="flex-start" paddingTop={20} borderBottomLeftRadius={10} borderBottomRightRadius={10}>
-                <Pane display="flex" flexDirection="column" >
-                    <StatDisplayComponent name="Diplomacy" value="+1" width={500} height={50} marginLeft={20} marginRight={10}/>
-                    <StatDisplayComponent name="Knowledge (Local)" value="+9" width={500} height={50} marginLeft={20} marginTop={12} marginRight={10}/>
-                    <StatDisplayComponent name="Profession" value="+9" width={500} height={50} marginLeft={20} marginTop={12} marginRight={10}/>
-                    <StatDisplayComponent name="Sense Motive" value="+9" width={500} height={50} marginLeft={20} marginTop={12} marginRight={10}/>
-                    <StatDisplayComponent name="Survival" value="+7" width={500} height={50} marginLeft={20} marginTop={12} marginRight={10}/>
-                    <StatDisplayComponent name="Swim" value="+9" width={500} height={50} marginLeft={20} marginTop={12} marginRight={10}/>
-                </Pane>
+            <Pane background="rgba(256, 256, 256, 0.4)" marginTop={0} width="100%" height={400} display="flex" justifyContent="flex-start" alignItems="flex-start" paddingTop={10} borderBottomLeftRadius={10} borderBottomRightRadius={10}>
+                {this.organizeColumnsForSkills(this.props.character.skills)}
             </Pane>
         </Pane>    
     </div>

@@ -14,13 +14,13 @@ export default class BodyComponent extends React.Component {
   render() {
       return <div className="BodyComponent">
         <Pane width="100%" padding={16} paddingTop={0} display="flex">
-            <CharacterInformationComponent />
+            <CharacterInformationComponent character={this.props.character}/>
             <Pane flex={1}>
                 <Pane height={400} display="flex" width="100%" justifyContent="space-around" alignItems="center">
-                    <DefenseComponent />
-                    <OffenseComponent />
+                    <DefenseComponent character={this.props.character}/>
+                    <OffenseComponent character={this.props.character}/>
                 </Pane>
-                <InfoTabsComponent />
+                <InfoTabsComponent character={this.props.character}/>
             </Pane>
         </Pane>
       </div>

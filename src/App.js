@@ -5,6 +5,10 @@ import CharacterSheetComponent from './components/CharacterSheetComponent';
 import { Pane } from 'evergreen-ui'
 import GoogleLoginButton from './components/Google/GoogleLoginButton';
 import GoogleLogoutButton from './components/Google/GoogleLogoutButton';
+import CharacterComponent from './components/CharacterComponent';
+
+const CHARACTER_SERVICE_URL = "https://test-pathfinder-sheet.herokuapp.com";
+// const CHARACTER_SERVICE_URL = "http://localhost:8080";
 
 export default class App extends Component {
 
@@ -12,15 +16,37 @@ export default class App extends Component {
     super(props)
     this.state = {
       googleToken: {},
-      loggedIn: false
+      loggedIn: false,
+      loadedCharacter: {}
     }
 
+    console.log('I exist!')
+
+    this.setState = this.setState.bind(this);
+    this.loadCharacter = this.loadCharacter.bind(this);
     this.handleGoogleToken = this.handleGoogleToken.bind(this);
     this.handleGoogleLogout = this.handleGoogleLogout.bind(this);
   }
 
+  acceptNewGoogleToken(token) {
+    this.setState({googleToken: token});
+  }
+
+  async loadCharacter(loadID) {
+    console.log('Heyo')
+    // var loadID = "eVbBMI8yjs"; //Manu
+    console.log("Loading character " + loadID);
+    var url = CHARACTER_SERVICE_URL + "/character/" + loadID;
+    if (this.state.googleToken.tokenObj)
+        url = url + "?token=" + this.state.googleToken.tokenObj.id_token;
+    const response = await fetch(url);
+    const data = await response.json();
+    this.setState({loadedCharacter: data});
+  }
+
   async handleGoogleToken(token) {
-    this.setState({googleToken: token, loggedIn: true})
+    this.setState({googleToken: token, loggedIn: true});
+    this.loadCharacter('Du0nzEj1wJ');
   }
 
   async handleGoogleLogout() {
@@ -41,10 +67,10 @@ export default class App extends Component {
 
     return (
       <div className="App" style={{
-        backgroundImage: 'url("https://scontent-lax3-1.xx.fbcdn.net/v/t1.15752-9/202095020_322692522840185_2140707559428348378_n.png?_nc_cat=109&ccb=1-3&_nc_sid=ae9488&_nc_ohc=JULP3aQAHQIAX8Wjkuk&tn=GbwpLf3bl2cMi2rg&_nc_ht=scontent-lax3-1.xx&oh=b25e7775cbdd7b53e2dd804f2b6236b8&oe=60E44696")'
+        backgroundImage: 'url("https://cdna.artstation.com/p/assets/covers/images/022/846/358/large/raphael-michael-1.jpg?1576901266")'
       }}>
         <Pane height="100vh">
-          <CharacterSheetComponent />
+          <CharacterSheetComponent character={this.state.loadedCharacter}/>
         </Pane>
         <GoogleLogoutButton handleLogout={this.handleGoogleLogout} name={this.state.googleToken.profileObj?.name} />
       </div>
