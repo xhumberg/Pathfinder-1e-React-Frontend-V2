@@ -2,7 +2,7 @@ import './App.css';
 import React from 'react';
 import { Component } from 'react';
 import CharacterSheetComponent from './components/CharacterSheetComponent';
-import { Pane } from 'evergreen-ui'
+import { Pane, Heading } from 'evergreen-ui'
 import GoogleLoginButton from './components/Google/GoogleLoginButton';
 import GoogleLogoutButton from './components/Google/GoogleLogoutButton';
 import CharacterComponent from './components/CharacterComponent';
@@ -17,15 +17,33 @@ export default class App extends Component {
     this.state = {
       googleToken: {},
       loggedIn: false,
-      loadedCharacter: {}
+      loadedCharacter: {},
+      windowWidth: window.innerWidth
     }
-
-    console.log('I exist!')
 
     this.setState = this.setState.bind(this);
     this.loadCharacter = this.loadCharacter.bind(this);
     this.handleGoogleToken = this.handleGoogleToken.bind(this);
     this.handleGoogleLogout = this.handleGoogleLogout.bind(this);
+  }
+
+  handleResize = (e) => {
+    this.setState({ windowWidth: window.innerWidth });
+  }
+  
+  componentDidMount() {
+    window.addEventListener("resize", this.handleResize);
+    
+    // // Initialize Firebase
+    // if (!firebase.apps.length) {
+    //    firebase.initializeApp({});
+    // }else {
+    //    firebase.app(); // if already initialized, use that one
+    // }
+  }
+
+  componentWillUnmount() {
+    window.addEventListener('resize', this.handleResize);
   }
 
   acceptNewGoogleToken(token) {
@@ -54,6 +72,9 @@ export default class App extends Component {
   }
 
   render() {
+
+    let appHeight = this.state.windowWidth < 1800 ? "auto" : "100vh";
+
     if (!this.state.loggedIn) {
       return(
       <div className="App">
@@ -66,14 +87,13 @@ export default class App extends Component {
     }
 
     return (
-      <div className="App" style={{
-        backgroundImage: 'url("https://cdna.artstation.com/p/assets/covers/images/022/846/358/large/raphael-michael-1.jpg?1576901266")'
-      }}>
-        <Pane height="100vh">
-          <CharacterSheetComponent character={this.state.loadedCharacter}/>
+      <Pane className="App">
+        <Pane height={appHeight}>
+          <CharacterSheetComponent character={this.state.loadedCharacter} windowWidth={this.state.windowWidth}/>
         </Pane>
         <GoogleLogoutButton handleLogout={this.handleGoogleLogout} name={this.state.googleToken.profileObj?.name} />
-      </div>
+        <Heading>{this.state.windowWidth}</Heading>
+      </Pane>
     )
   }
 }

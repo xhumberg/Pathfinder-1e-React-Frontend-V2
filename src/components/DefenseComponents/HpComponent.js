@@ -9,13 +9,19 @@ export default class HpComponent extends React.Component {
     super(props);
   }
 
+
   render() {
-    return <div className="HpComponent">
-        <Pane alignItems="center" background="rgba(0, 0, 0, 0.4)" padding={5} border={true} borderRadius={10} paddingLeft={20} paddingRight={20}>
-            <HpBarComponent character={this.props.character}/>
-            <HpButtonsComponent />
+    if (this.props.windowWidth > 750) {
+    return <Pane alignItems="center" background="rgba(0, 0, 0, 0.4)" padding={5} border={true} borderRadius={10} paddingLeft={20} paddingRight={20}>
+            <HpBarComponent character={this.props.character} windowWidth={this.props.windowWidth}/>
+            <HpButtonsComponent windowWidth={this.props.windowWidth}/>
         </Pane>
-    </div>
+    } else {
+      return <Pane display="flex" flexDirection="column" width="100%">
+            <HpBarComponent character={this.props.character} windowWidth={this.props.windowWidth}/>
+            <HpButtonsComponent windowWidth={this.props.windowWidth}/>
+      </Pane>
+    }
   };
 }
 

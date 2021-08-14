@@ -26,7 +26,7 @@ export default class InfoTabsComponent extends React.Component {
     let columns = Math.ceil(numberOfSkills/6);
     let width = 484;
     if (columns < 4) {
-      width = 484;
+      width = 432;
     } else if (columns == 4) {
       width = 360;
     } else if (columns == 5) {
@@ -47,8 +47,7 @@ export default class InfoTabsComponent extends React.Component {
   }
 
   render() {
-    return <div className="InfoTabsComponent">
-        <Pane width={1560} height={450} display="flex" flexDirection="column" alignItems="flex-start" justifyContent="flex-start" background="rgba(0, 0, 0, 0.4)" padding={10} borderRadius={20} border={true} marginLeft={20}>
+    return <Pane width="95%" minWidth={1400} height={450} display="flex" flexDirection="column" alignItems="flex-start" justifyContent="flex-start" background="orange" padding={10} borderRadius={20} border={true} marginLeft={20}>
             <Pane display="flex">
                 <Tab key="Skills" id="Skills" size={600} paddingBottom={12} color="black" background="rgba(256, 256, 256, 0.4)" borderBottomLeftRadius={0} borderBottomRightRadius={0} >Skills</Tab>
                 <Tab key="Items" id="Items" size={600} paddingBottom={12} color="white">Items</Tab>
@@ -61,6 +60,5 @@ export default class InfoTabsComponent extends React.Component {
                 {this.organizeColumnsForSkills(this.props.character.skills)}
             </Pane>
         </Pane>    
-    </div>
   };
 }

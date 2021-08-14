@@ -1,5 +1,6 @@
 import React from 'react';
 import { Pane, Heading, Strong } from "evergreen-ui";
+import StatDisplayComponent from '../StatDisplayComponent';
 
 export default class HpBarComponent extends React.Component {
 
@@ -8,7 +9,8 @@ export default class HpBarComponent extends React.Component {
   }
 
   render() {
-    return <div className="HpBarComponent">
+    if (this.props.windowWidth > 750) {
+    return <Pane className="HpBarComponent" width="100%">
       <Pane display="flex" justifyContent="space-evenly" margin="auto">
         <Pane margin="auto" width="33%">
             <Heading size={600} marginBottom={4} color="white">Nonlethal Damage</Heading>
@@ -22,11 +24,21 @@ export default class HpBarComponent extends React.Component {
             <Heading size={600} marginBottom={4} color="white">Temp HP</Heading>
             <Strong color="white">{this.props.character.tempHp || '0'}</Strong>
         </Pane>
+      </Pane>
+      <Pane width={610} height={35} background="black" margin="auto" borderRadius={17} padding={4} border={true}>
+          <Pane width={this.props.character.currentHp/this.props.character.maxHp*600} height={25} background="green800" borderRadius={12}>
+          </Pane>
+      </Pane>
     </Pane>
-    <Pane width={700} height={35} background="black" margin="auto" borderRadius={17} padding={4} border={true}>
-        <Pane width={this.props.character.currentHp/this.props.character.maxHp*690} height={25} background="green800" borderRadius={12}>
+    } else {
+      return <Pane className="HpBarComponent" width="100%">
+        <StatDisplayComponent name="Nonlethal Damage" value={this.props.character.nonLethal || '0'} width="100%"/>
+        <StatDisplayComponent name="Temp HP" value={this.props.character.tempHp || '0'} width="100%" />
+        <StatDisplayComponent name="HP" value={this.props.character.currentHp + "/" + this.props.character.maxHp} width="100%" />
+        <Pane width="100%" background="black" border>
+          <Pane width={this.props.character.currentHp/this.props.character.maxHp*100 + "%"} background="green" height={40} border/>
         </Pane>
-    </Pane>
-      </div>
+      </Pane>
+    }
   };
 }

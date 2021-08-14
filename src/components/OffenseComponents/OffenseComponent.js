@@ -9,8 +9,7 @@ export default class OffenseComponent extends React.Component {
   }
 
 render() {
-  return <div className="OffenseComponent">
-    <Pane height={370} background="rgba(0, 0, 0, 0.4)" borderRadius={15} display="flex" alignItems="center" justifyContent="center" flexDirection="column" border={true} padding={10}>
+  return <Pane width="50%" height={370} margin={0} background="green" borderRadius={15} display="flex" alignItems="center" justifyContent="center" flexDirection="column" border={true} padding={10}>
       <Text color="white" margin={12} marginTop={16}>WEAPONS AND SPELLS</Text>
       <Button marginBottom={8} height={50} width={600} background="rgba(256, 256, 256, 0.4)" color="white" color>Click to View Spells</Button>
       {this.props.character.weapons?.map((weapon) => <WeaponComponent name={weapon.name} attack={weapon.attackMods} traits={weapon.specialTags} damage={weapon.damage} />)}
@@ -21,6 +20,5 @@ render() {
         <Button padding={0} appearance="minimal"><ChevronRightIcon color="black"/></Button>
       </Pane>
     </Pane>
-  </div>
   };
 }
