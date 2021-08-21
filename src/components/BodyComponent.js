@@ -1,19 +1,16 @@
 import React from 'react';
-import { Pane, Text, Heading, Tab, Button, Pagination } from "evergreen-ui";
+import { Pane } from "evergreen-ui";
 import CharacterInformationComponent from './CharacterInfoComponents/CharacterInformationComponent';
 import DefenseComponent from './DefenseComponents/DefenseComponent';
 import OffenseComponent from './OffenseComponents/OffenseComponent';
 import InfoTabsComponent from './InfoTabsComponent';
+import { PageSize } from './PageSize';
 
 export default class BodyComponent extends React.Component {
 
-  constructor(props) {
-    super(props);
-  }
-
   render() {
 
-      if (this.props.windowWidth < 1820 && this.props.windowWidth >= 1100) {
+      if (this.props.windowWidth === PageSize.VERTICAL) {
         return <Pane display="flex" flexDirection="column" alignItems="center">
         <Pane display="flex" justifyContent="center">
           <CharacterInformationComponent character={this.props.character} windowWidth={this.props.windowWidth} />
@@ -24,7 +21,7 @@ export default class BodyComponent extends React.Component {
         </Pane> 
         <InfoTabsComponent character={this.props.character} windowWidth={this.props.windowWidth} />
       </Pane>
-      } else if (this.props.windowWidth < 1100) {
+      } else if (this.props.windowWidth === PageSize.TABLET || this.props.windowWidth === PageSize.MOBILE) {
         return <Pane display="flex" alignItems="center" justifyContent="center" flexDirection="column">
           <CharacterInformationComponent character={this.props.character} windowWidth={this.props.windowWidth} />
           <DefenseComponent character={this.props.character} windowWidth={this.props.windowWidth} />

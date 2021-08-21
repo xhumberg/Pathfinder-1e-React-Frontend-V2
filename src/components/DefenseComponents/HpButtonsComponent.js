@@ -1,14 +1,11 @@
 import React from 'react';
 import { Pane, Button } from "evergreen-ui";
+import { PageSize } from '../PageSize';
 
 export default class HpButtonsComponent extends React.Component {
 
-  constructor(props) {
-    super(props);
-  }
-
   render() {
-    if (this.props.windowWidth > 750) {
+    if (this.props.windowWidth !== PageSize.MOBILE) {
       return <Pane 
         display="flex"
         padding={10}

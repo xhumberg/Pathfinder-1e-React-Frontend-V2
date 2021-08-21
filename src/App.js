@@ -7,7 +7,7 @@ import CharacterSheetComponent from './components/CharacterSheetComponent';
 import { Pane, Heading } from 'evergreen-ui'
 import GoogleLoginButton from './components/Google/GoogleLoginButton';
 import GoogleLogoutButton from './components/Google/GoogleLogoutButton';
-import CharacterComponent from './components/CharacterComponent';
+import { PageSize } from "./components/PageSize";
 
     // For Firebase JS SDK v7.20.0 and later, measurementId is optional
     const firebaseConfig = {
@@ -31,7 +31,7 @@ export default class App extends Component {
       googleToken: {},
       loggedIn: false,
       loadedCharacter: {},
-      windowWidth: window.innerWidth
+      windowWidth: this.determineWindowWidth()
     }
 
     this.setState = this.setState.bind(this);
@@ -41,7 +41,23 @@ export default class App extends Component {
   }
 
   handleResize = (e) => {
-    this.setState({ windowWidth: window.innerWidth });
+    
+    this.setState({ windowWidth: this.determineWindowWidth() });
+  }
+
+  determineWindowWidth() {
+    let pageSize = PageSize.DEFAULT;
+    if (window.innerWidth < 1820) {
+      pageSize = PageSize.VERTICAL;
+    }
+    if (window.innerWidth < 1100) {
+      pageSize = PageSize.TABLET;
+    }
+    if (window.innerWidth < 750) {
+      pageSize = PageSize.MOBILE
+    }
+
+    return pageSize;
   }
   
   componentDidMount() {

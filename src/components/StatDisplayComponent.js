@@ -3,13 +3,8 @@ import { Pane, Heading } from "evergreen-ui";
 
 export default class StatDisplayComponent extends React.Component {
 
-  constructor(props) {
-    super(props);
-  }
-
   render() {
-    return <div className="StatDisplayComponent">
-    <Pane 
+    return <Pane 
       display="flex" 
       paddingBottom={0}
       borderRadius={3}
@@ -31,7 +26,6 @@ export default class StatDisplayComponent extends React.Component {
           <Heading size={800} marginRight={25} marginLeft={10} color="white">{this.props.value}</Heading>
       </Pane>
   </Pane>
-  </div>
   };
 }
 

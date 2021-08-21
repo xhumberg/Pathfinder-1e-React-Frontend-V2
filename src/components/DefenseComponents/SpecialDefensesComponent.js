@@ -1,14 +1,11 @@
 import React from 'react';
 import { Pane, Heading } from "evergreen-ui";
+import { PageSize } from '../PageSize';
 
 export default class SpecialDefensesComponent extends React.Component {
 
-  constructor(props) {
-    super(props);
-  }
-
   render() {
-    if (this.props.windowWidth > 750) {
+    if (this.props.windowWidth !== PageSize.MOBILE) {
       return <Pane background="rgba(0, 0, 0, 0.4)" width={700} margin="auto" marginTop={8} borderRadius={3} height={50} border={true}>
           <Heading size={500} color="white">Special Defenses</Heading>
           <Pane display="flex" justifyContent="space-evenly" marginTop={8}>

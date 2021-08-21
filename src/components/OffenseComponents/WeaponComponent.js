@@ -1,14 +1,11 @@
 import React from 'react';
 import { Pane, Heading } from "evergreen-ui";
+import { PageSize } from '../PageSize';
 
 export default class WeaponComponent extends React.Component {
 
-  constructor(props) {
-    super(props);
-  }
-
   render() {
-    if (this.props.windowWidth > 750) {
+    if (this.props.windowWidth !== PageSize.MOBILE) {
       return <Pane width={700} background="rgba(0, 0, 0, 0)" border={true} height={100} borderRadius={10} display="flex" padding={10} margin={10}>
         <Pane flex={1} display="flex" flexDirection="column" justifyContent="space-between" alignItems="flex-start">
           <Heading size={800} color="white">{this.props.name}</Heading>

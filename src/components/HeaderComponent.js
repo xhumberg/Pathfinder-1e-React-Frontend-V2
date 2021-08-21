@@ -1,20 +1,14 @@
 import React from 'react';
 import { Pane, Heading, IconButton, MenuIcon, Strong } from "evergreen-ui";
+import { PageSize } from './PageSize';
 
 export default class HeaderComponent extends React.Component {
 
-  constructor(props) {
-    super(props);
-  }
-
   render() {
-
-    
-
     let wrapDisplay = this.props.windowWidth < 1800 ? "wrap" : "no-wrap";
     let headerHeight = this.props.windowWidth < 1800 ? "auto" : 100;
 
-    if (this.props.windowWidth > 700) {
+    if (this.props.windowWidth !== PageSize.MOBILE) {
         return <Pane border background="rgba(0, 0, 0, 0.4)" className="HeaderComponent" height={headerHeight} minHeight={100}>
             <Pane 
                 display="flex" 

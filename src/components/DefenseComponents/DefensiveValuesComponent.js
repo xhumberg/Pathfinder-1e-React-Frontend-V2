@@ -2,16 +2,12 @@ import React from 'react';
 import { Pane } from "evergreen-ui";
 import ACComponent from './ACComponent';
 import SavesComponent from './SavesComponent';
-import StatDisplayComponent from '../StatDisplayComponent';
+import { PageSize } from '../PageSize';
 
 export default class DefensiveValuesComponent extends React.Component {
 
-  constructor(props) {
-    super(props);
-  }
-
   render() {
-    if (this.props.windowWidth > 750) {
+    if (this.props.windowWidth !== PageSize.MOBILE) {
       return <Pane 
           display="flex" 
           padding={16}

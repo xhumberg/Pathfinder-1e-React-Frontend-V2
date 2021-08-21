@@ -1,15 +1,11 @@
 import React from 'react';
-import { Pane, Tab, Heading, SelectMenu, Button, CaretDownIcon} from "evergreen-ui";
+import { Pane, Tab, SelectMenu, Button, CaretDownIcon} from "evergreen-ui";
 import StatDisplayComponent from './StatDisplayComponent';
+import { PageSize } from './PageSize';
 
 export default class InfoTabsComponent extends React.Component {
 
-  constructor(props) {
-    super(props);
-  }
-
   organizeColumnsForSkills(skills) {
-
     let filteredSkills = [];
 
     for (let currentSkill = 0; currentSkill < skills?.length; currentSkill++) {
@@ -20,19 +16,17 @@ export default class InfoTabsComponent extends React.Component {
       }
     }
 
-    console.log(filteredSkills)
-
-    if (this.props.windowWidth > 750) {
+    if (this.props.windowWidth !== PageSize.MOBILE) {
       let numberOfSkills = filteredSkills?.length;
       let columns = Math.ceil(numberOfSkills/6);
       let width = 484;
       if (columns < 4) {
         width = 432;
-      } else if (columns == 4) {
+      } else if (columns === 4) {
         width = 360;
-      } else if (columns == 5) {
+      } else if (columns === 5) {
         width = 284;
-      } else if (columns == 6) {
+      } else if (columns === 6) {
         width = 232;
       }
       let allColumns = [];
@@ -51,7 +45,7 @@ export default class InfoTabsComponent extends React.Component {
   }
 
   render() {
-    if (this.props.windowWidth > 750) {
+    if (this.props.windowWidth !== PageSize.MOBILE) {
       return <Pane width="95%" minWidth={1400} height={450} display="flex" flexDirection="column" alignItems="flex-start" justifyContent="flex-start" background="orange" padding={10} borderRadius={20} border={true} marginLeft={20}>
         <Pane display="flex">
           <Tab key="Skills" id="Skills" size={600} paddingBottom={12} color="black" background="rgba(256, 256, 256, 0.4)" borderBottomLeftRadius={0} borderBottomRightRadius={0} >Skills</Tab>

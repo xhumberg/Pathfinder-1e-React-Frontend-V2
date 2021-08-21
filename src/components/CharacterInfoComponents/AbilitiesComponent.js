@@ -2,10 +2,6 @@ import React from 'react';
 import { Pane, Table, Heading } from "evergreen-ui";
 
 export default class AbilitiesComponent extends React.Component {
-
-    constructor(props) {
-      super(props);
-    }
   
     render() {
         return(
