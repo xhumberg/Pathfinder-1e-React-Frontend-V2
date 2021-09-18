@@ -3,7 +3,7 @@ import { Pane } from "evergreen-ui";
 import CharacterInformationComponent from './CharacterInfoComponents/CharacterInformationComponent';
 import DefenseComponent from './DefenseComponents/DefenseComponent';
 import OffenseComponent from './OffenseComponents/OffenseComponent';
-import InfoTabsComponent from './InfoTabsComponent';
+import InfoTabsComponent from './InfoTabComponents/InfoTabsComponent';
 import { PageSize } from './PageSize';
 
 export default class BodyComponent extends React.Component {

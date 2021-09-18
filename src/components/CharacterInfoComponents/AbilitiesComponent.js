@@ -8,7 +8,7 @@ export default class AbilitiesComponent extends React.Component {
             <Pane width={this.props.width || 250} className="AbilitiesComponent" marginTop={8}>
                 <Table>
                     <Table.Body>
-                        {this.props.character.ability?.map((ability) => (
+                        {this.props.character.getJson().ability?.map((ability) => (
                             <Table.Row height={this.props.rowHeight || 40}>
                                 <Table.TextCell background="rgba(0, 0, 0, 0.4)"><Heading size={this.props.size+500} color="white">{ability.name.slice(0, 3)}</Heading></Table.TextCell>
                                 <Table.TextCell background="rgba(0, 0, 0, 0.4)"><Heading size={this.props.size+400} color="white">{ability.mod}</Heading></Table.TextCell>

@@ -18,19 +18,19 @@ export default class HeaderComponent extends React.Component {
             >
                 <Pane flex={1} alignItems="center" display="flex">
                     <IconButton icon={MenuIcon} size="large"/>
-                    <Heading color="white" size={900} marginLeft={25}>{this.props.character.name}</Heading>
+                    <Heading color="white" size={900} marginLeft={25}>{this.props.character.getJson().name}</Heading>
                 </Pane>
                 <Pane>
-                    <Heading color="white" size={800} marginRight={40}>{this.props.character.alignment} {this.props.character.size} {this.props.character.race} {this.props.character.classes}</Heading>
+                    <Heading color="white" size={800} marginRight={40}>{this.props.character.getJson().alignment} {this.props.character.getJson().size} {this.props.character.getJson().race} {this.props.character.getJson().classes}</Heading>
                 </Pane>
             </Pane>
             <Pane marginBottom={15} marginTop={0} display="flex" justifyContent="space-around" wrapDisplay={wrapDisplay}>
-                <Strong color="white" >Gender: {this.props.character.gender}</Strong>
-                <Strong color="white" >Type: {this.props.character.typeAndSubtype}</Strong>
-                <Strong color="white" >Age: {this.props.character.age}</Strong>
-                <Strong color="white" >Height: {this.props.character.height}</Strong>
-                <Strong color="white" >Weight: {this.props.character.weight}</Strong>
-                <Strong color="white" >Deity: {this.props.character.deity}</Strong>
+                <Strong color="white" >Gender: {this.props.character.getJson().gender}</Strong>
+                <Strong color="white" >Type: {this.props.character.getJson().typeAndSubtype}</Strong>
+                <Strong color="white" >Age: {this.props.character.getJson().age}</Strong>
+                <Strong color="white" >Height: {this.props.character.getJson().height}</Strong>
+                <Strong color="white" >Weight: {this.props.character.getJson().weight}</Strong>
+                <Strong color="white" >Deity: {this.props.character.getJson().deity}</Strong>
             </Pane>
         </Pane>
     } else {
@@ -48,16 +48,16 @@ export default class HeaderComponent extends React.Component {
         >
             <Pane display="flex" alignItems="center">
                 <IconButton icon={MenuIcon} size="medium" marginRight={12}/>
-                <Heading color="white" size={900}>{this.props.character.name}</Heading>
+                <Heading color="white" size={900}>{this.props.character.getJson().name}</Heading>
             </Pane>
-            <Heading color="white" size={800}>{this.props.character.alignment} {this.props.character.size} {this.props.character.race} {this.props.character.classes}</Heading>
+            <Heading color="white" size={800}>{this.props.character.getJson().alignment} {this.props.character.getJson().size} {this.props.character.getJson().race} {this.props.character.getJson().classes}</Heading>
             <Pane width="100%" display="flex" justifyContent="space-around" paddingBottom={8} flexWrap="wrap">
-                <Strong color="white" marginLeft={20} marginRight={20}>Gender: {this.props.character.gender}</Strong>
-                <Strong color="white" marginLeft={20} marginRight={20}>Type: {this.props.character.typeAndSubtype}</Strong>
-                <Strong color="white" marginLeft={20} marginRight={20}>Age: {this.props.character.age}</Strong>
-                <Strong color="white" marginLeft={20} marginRight={20}>Height: {this.props.character.height}</Strong>
-                <Strong color="white" marginLeft={20} marginRight={20}>Weight: {this.props.character.weight}</Strong>
-                <Strong color="white" marginLeft={20} marginRight={20}>Deity: {this.props.character.deity}</Strong>
+                <Strong color="white" marginLeft={20} marginRight={20}>Gender: {this.props.character.getJson().gender}</Strong>
+                <Strong color="white" marginLeft={20} marginRight={20}>Type: {this.props.character.getJson().typeAndSubtype}</Strong>
+                <Strong color="white" marginLeft={20} marginRight={20}>Age: {this.props.character.getJson().age}</Strong>
+                <Strong color="white" marginLeft={20} marginRight={20}>Height: {this.props.character.getJson().height}</Strong>
+                <Strong color="white" marginLeft={20} marginRight={20}>Weight: {this.props.character.getJson().weight}</Strong>
+                <Strong color="white" marginLeft={20} marginRight={20}>Deity: {this.props.character.getJson().deity}</Strong>
             </Pane>
         </Pane>
     }
