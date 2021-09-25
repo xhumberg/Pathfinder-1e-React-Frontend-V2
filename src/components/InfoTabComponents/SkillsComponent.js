@@ -10,7 +10,6 @@ export default class SkillsComponent extends React.Component {
   
       for (let currentSkill = 0; currentSkill < skills?.length; currentSkill++) {
         let skill = skills[currentSkill]
-        console.log(skill)
         if (skill.hasModifiers) {
           filteredSkills.push(skill)
         }

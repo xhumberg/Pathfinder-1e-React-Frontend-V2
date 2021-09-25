@@ -101,10 +101,14 @@ export default class App extends Component {
 
     return (
       <Pane className="App">
-        <Pane backgroundImage="url(https://wallpaperaccess.com/full/6157372.jpg)" backgroundAttachment="fixed">
-          <PathfinderCharacter windowWidth={this.state.windowWidth} characterId='eVbBMI8yjs' token={this.state.googleToken} />
-          <GoogleLogoutButton handleLogout={this.handleGoogleLogout} name={this.state.googleToken.profileObj?.name} />
-          <Heading>{this.state.windowWidth}</Heading>
+        <Pane backgroundImage="url(https://wallpaperaccess.com/full/6157372.jpg)" backgroundAttachment="scroll">
+          <PathfinderCharacter 
+            windowWidth={this.state.windowWidth} 
+            characterId='eVbBMI8yjs' 
+            token={this.state.googleToken} 
+            handleGoogleLogout={this.handleGoogleLogout} 
+            loggedInName={this.state.googleToken.profileObj?.name}
+          />
         </Pane>
       </Pane>
     )

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Pane, Heading, IconButton, MenuIcon, Strong } from "evergreen-ui";
 import { PageSize } from './PageSize';
+import MenuSidebarComponent from './MenuSidebarComponent';
 
 export default class HeaderComponent extends React.Component {
 
@@ -17,7 +18,10 @@ export default class HeaderComponent extends React.Component {
                 borderRadius={3}
             >
                 <Pane flex={1} alignItems="center" display="flex">
-                    <IconButton icon={MenuIcon} size="large"/>
+                    <MenuSidebarComponent 
+                        handleGoogleLogout={this.props.handleGoogleLogout} 
+                        loggedInName={this.props.loggedInName}
+                    />
                     <Heading color="white" size={900} marginLeft={25}>{this.props.character.getJson().name}</Heading>
                 </Pane>
                 <Pane>
@@ -47,7 +51,10 @@ export default class HeaderComponent extends React.Component {
             alignItems="center"
         >
             <Pane display="flex" alignItems="center">
-                <IconButton icon={MenuIcon} size="medium" marginRight={12}/>
+                <MenuSidebarComponent 
+                    handleGoogleLogout={this.props.handleGoogleLogout} 
+                    loggedInName={this.props.loggedInName}
+                />
                 <Heading color="white" size={900}>{this.props.character.getJson().name}</Heading>
             </Pane>
             <Heading color="white" size={800}>{this.props.character.getJson().alignment} {this.props.character.getJson().size} {this.props.character.getJson().race} {this.props.character.getJson().classes}</Heading>
