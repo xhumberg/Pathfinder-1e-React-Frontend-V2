@@ -29,13 +29,13 @@ export default class PathfinderCharacter extends React.Component {
     }
 
     async loadCharacter() {
-      console.log("Loading character " + this.props.characterId);
-      var url = CHARACTER_SERVICE_URL + "/character/" + this.props.characterId;
-      if (this.props.token.tokenObj)
-          url = url + "?token=" + this.props.token.tokenObj.id_token;
-      const response = await fetch(url);
-      const data = await response.json();
-      this.setState({json: data});
+        console.log("Loading character " + this.props.characterId);
+        var url = CHARACTER_SERVICE_URL + "/character/" + this.props.characterId;
+        if (this.props.token.tokenObj)
+            url = url + "?token=" + this.props.token.tokenObj.id_token;
+        const response = await fetch(url);
+        const data = await response.json();
+        this.setState({json: data});
     }
 
     async toggleEffect(effectToToggle) {
@@ -62,7 +62,7 @@ export default class PathfinderCharacter extends React.Component {
         this.setState({json: data});
       }
     
-      async uncastSpell(classId, spellName, spellLevel) {
+    async uncastSpell(classId, spellName, spellLevel) {
         console.log("Uncasting spell: " + spellName);
         var url = CHARACTER_SERVICE_URL + "/character/" + this.props.characterId + "/uncastSpell";
         const response = await fetch(url, {method: 'POST', body: JSON.stringify({
@@ -73,7 +73,52 @@ export default class PathfinderCharacter extends React.Component {
         })});
         const data = await response.json();
         this.setState({json: data});
+    }
+    
+    async heal(amount) {
+        this.setState({silentLoading: true});
+        console.log("Healing " + amount);
+        var url = CHARACTER_SERVICE_URL + "/character/" + this.props.characterId + "/heal"
+        + "?token=" + this.props.token.tokenObj.id_token
+        + "&amount=" + amount;
+        await fetch(url, {method: 'PUT'});
+        this.loadCharacter()
       }
+    
+    async damage(amount) {
+        this.setState({silentLoading: true});
+        console.log("Healing " + amount);
+        var url = CHARACTER_SERVICE_URL + "/character/" + this.props.characterId + "/damage"
+        + "?token=" + this.props.token.tokenObj.id_token
+        + "&amount=" + amount;
+        await fetch(url, {method: 'PUT'});
+        this.loadCharacter()
+    }
+    
+    async reduce(resourceId, type) {
+        this.setState({silentLoading: true});
+        console.log("Reducing " + type + " resource id: " + resourceId);
+        var url = CHARACTER_SERVICE_URL + "/character/" + this.props.characterId + "/reduceResource/" + type + "/" + resourceId + "?token=" + this.props.token.tokenObj.id_token;
+        await fetch(url, {method: 'PUT'});
+        this.loadCharacter()
+    }
+    
+    async increase(resourceId, type) {
+        this.setState({silentLoading: true});
+        console.log("Reducing " + type + " resource id: " + resourceId);
+        var url = CHARACTER_SERVICE_URL + "/character/" + this.props.characterId + "/increaseResource/" + type + "/" + resourceId + "?token=" + this.props.token.tokenObj.id_token;
+        await fetch(url, {method: 'PUT'});
+        this.loadCharacter()
+    }
+    
+    async forceDatabaseReload() {
+        this.setState({loading: true});
+        var url = CHARACTER_SERVICE_URL + "/character/" + this.props.characterId + "/forceReload";
+        if (this.state.googleToken.tokenObj)
+            url = url + "?token=" + this.state.googleToken.tokenObj.id_token;
+        await fetch(url, {method: 'PUT'});
+        this.loadCharacter()
+    }
 
     render() {
         if (this.state.json)

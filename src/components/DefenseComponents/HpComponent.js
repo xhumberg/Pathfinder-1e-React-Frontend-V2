@@ -10,12 +10,12 @@ export default class HpComponent extends React.Component {
     if (this.props.windowWidth !== PageSize.MOBILE) {
     return <Pane alignItems="center" background="rgba(0, 0, 0, 0.4)" padding={5} border={true} borderRadius={10} paddingLeft={20} paddingRight={20}>
             <HpBarComponent character={this.props.character} windowWidth={this.props.windowWidth}/>
-            <HpButtonsComponent windowWidth={this.props.windowWidth}/>
+            <HpButtonsComponent windowWidth={this.props.windowWidth} character={this.props.character}/>
         </Pane>
     } else {
       return <Pane display="flex" flexDirection="column" width="100%">
             <HpBarComponent character={this.props.character} windowWidth={this.props.windowWidth}/>
-            <HpButtonsComponent windowWidth={this.props.windowWidth}/>
+            <HpButtonsComponent windowWidth={this.props.windowWidth} character={this.props.character}/>
       </Pane>
     }
   };

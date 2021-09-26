@@ -104,7 +104,7 @@ export default class App extends Component {
         <Pane backgroundImage="url(https://wallpaperaccess.com/full/6157372.jpg)" backgroundAttachment="scroll">
           <PathfinderCharacter 
             windowWidth={this.state.windowWidth} 
-            characterId='eVbBMI8yjs' 
+            characterId='kUC8d6ZgDu' 
             token={this.state.googleToken} 
             handleGoogleLogout={this.handleGoogleLogout} 
             loggedInName={this.state.googleToken.profileObj?.name}
