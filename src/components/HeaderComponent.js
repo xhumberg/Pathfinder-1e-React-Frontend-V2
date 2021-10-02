@@ -19,6 +19,7 @@ export default class HeaderComponent extends React.Component {
             >
                 <Pane flex={1} alignItems="center" display="flex">
                     <MenuSidebarComponent 
+                        character={this.props.character}
                         handleGoogleLogout={this.props.handleGoogleLogout} 
                         loggedInName={this.props.loggedInName}
                     />
@@ -52,6 +53,7 @@ export default class HeaderComponent extends React.Component {
         >
             <Pane display="flex" alignItems="center">
                 <MenuSidebarComponent 
+                    character={this.props.character}
                     handleGoogleLogout={this.props.handleGoogleLogout} 
                     loggedInName={this.props.loggedInName}
                 />

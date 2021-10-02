@@ -8,6 +8,7 @@ import GoogleLoginButton from './components/Google/GoogleLoginButton';
 import GoogleLogoutButton from './components/Google/GoogleLogoutButton';
 import { PageSize } from "./components/PageSize";
 import PathfinderCharacter from "./components/PathfinderCharacter";
+import LoadPane from "./components/LoadPane";
 
     // For Firebase JS SDK v7.20.0 and later, measurementId is optional
     const firebaseConfig = {
@@ -35,6 +36,7 @@ export default class App extends Component {
     this.setState = this.setState.bind(this);
     this.handleGoogleToken = this.handleGoogleToken.bind(this);
     this.handleGoogleLogout = this.handleGoogleLogout.bind(this);
+    this.forceUpdate = this.forceUpdate.bind(this);
   }
 
   handleResize = (e) => {
@@ -87,6 +89,8 @@ export default class App extends Component {
   }
 
   render() {
+    // const CHARACTER_SERVICE_URL = "https://test-pathfinder-sheet.herokuapp.com";
+    const CHARACTER_SERVICE_URL = "http://localhost:8080"; 
 
     if (!this.state.loggedIn) {
       return(
@@ -99,15 +103,35 @@ export default class App extends Component {
       </div>)
     }
 
+    let urlParameter = 'load';
+    if (window.location.href.includes('/') && window.location.href.split('/').length === 4) {
+      urlParameter = window.location.href.split('/')[3];
+      if (urlParameter === "") {
+        urlParameter = 'load';
+      }
+    }
+
+    console.log(urlParameter)
+
+    if (urlParameter === "load") {
+      return (
+        <Pane>
+          <GoogleLogoutButton handleLogout={this.handleGoogleLogout} name={this.state.googleToken.profileObj?.name} />
+          <LoadPane forceReload={this.forceUpdate} token={this.state.googleToken.tokenObj?.id_token} characterUrl={CHARACTER_SERVICE_URL}/>
+        </Pane>
+      )
+    }
+
     return (
       <Pane className="App">
         <Pane backgroundImage="url(https://wallpaperaccess.com/full/6157372.jpg)" backgroundAttachment="scroll">
           <PathfinderCharacter 
             windowWidth={this.state.windowWidth} 
-            characterId='kUC8d6ZgDu' 
+            characterId={urlParameter}
             token={this.state.googleToken} 
             handleGoogleLogout={this.handleGoogleLogout} 
             loggedInName={this.state.googleToken.profileObj?.name}
+            url={CHARACTER_SERVICE_URL}
           />
         </Pane>
       </Pane>
